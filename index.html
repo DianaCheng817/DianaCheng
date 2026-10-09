@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>f25011102 - 开源AI技术实践</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .slide {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 60px;
+            max-width: 900px;
+            width: 100%;
+            animation: fadeIn 0.8s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .student-id {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 18px;
+        }
+        
+        .content-section {
+            margin: 30px 0;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .task-card {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .task-card:hover {
+            transform: translateX(10px);
+        }
+        
+        .task-type {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .task-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        
+        .task-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        .code-block {
+            background: #2d2d3f;
+            color: #a9dc76;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <div class="student-id">学号：f25011102</div>
+            <h1>开源AI技术实践</h1>
+            <p class="subtitle">0920 课程学习笔记与任务规划</p>
+        </div>
+
+        <div class="content-section">
+            <h2>📚 今日学习内容</h2>
+            <div class="task-card">
+                <div class="task-type">已完成</div>
+                <div class="task-title">开源模型本地部署与调用</div>
+                <div class="task-desc">
+                    完成 Qwen3-0.6B 模型本地部署，掌握 ModelScope 模型下载、
+                    Transformers 加载、CPU 推理等完整流程。
+                </div>
+                <div class="code-block">
+                    git clone https://gitcode.com/nicezack/ai-opensource-practice-course.git
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>🎯 三个学习任务主题</h2>
+            
+            <div class="task-card">
+                <div class="task-type">知识整理</div>
+                <div class="task-title">本地大模型部署知识图谱</div>
+                <div class="task-desc">
+                    把本周学过的模型部署知识整理成结构化的思维导图，包括：
+                    模型下载、环境配置、推理优化、Web 部署等完整流程，
+                    形成可复用的部署知识库。
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-type">知识提炼</div>
+                <div class="task-title">开源模型技术选型对比报告</div>
+                <div class="task-desc">
+                    从参数规模、推理速度、硬件要求、中文能力等维度，
+                    对比 Qwen、Llama、ChatGLM 等主流开源模型，
+                    提炼出不同场景下的选型建议。
+                </div>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-type">知识传播</div>
+                <div class="task-title">零基础本地部署大模型教程</div>
+                <div class="task-desc">
+                    写一篇面向新手的图文教程，从零开始教同学如何在自己的电脑上
+                    部署一个能聊天的 AI 助手，包含常见问题排查和优化技巧。
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            上海杉达学院 · 计算机科学与技术 · 2025级 · f25011102
+        </div>
+    </div>
+</body>
+</html>

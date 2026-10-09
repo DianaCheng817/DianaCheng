@@ -1,0 +1,8 @@
+# 原版（视频）：OpenRouter SDK
+openrouter>=0.1.0
+
+# 国内可用变体（main_bailian.py）：OpenAI SDK 调用阿里云百炼兼容接口
+openai>=1.0.0
+
+# 视频中还演示了 yt-dlp（B站视频下载技能），如不需要可注释掉
+# yt-dlp

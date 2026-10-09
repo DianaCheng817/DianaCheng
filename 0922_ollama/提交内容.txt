@@ -1,0 +1,21 @@
+【0922 作业提交内容】学号 f25011102 —— 可直接复制到作业表格对应格子
+
+■ 格子：ollama模型下载和调用+对外服务
+已完成。本机 Ollama 0.34.3 运行中，新下载 qwen3:0.6b（522MB，ollama pull 成功），并实测三种调用方式：CLI（ollama run）、原生API（/api/generate、/api/chat）、OpenAI兼容接口（/v1/chat/completions，返回 usage 正常）。对外服务：默认服务化监听 127.0.0.1:11434；已提供局域网方案（OLLAMA_HOST=0.0.0.0:11434 + 重启）和公网方案（cloudflared/ngrok 隧道）。操作记录与可运行脚本见 D:\开源微专业作业\0922_ollama\（01_模型下载与调用_操作记录.md、call_ollama_demo.py）。
+
+■ 格子：不同方式调用的区别（Ollama API / OpenAI Chat Completions / OpenAI Responses / Anthropic Messages）
+已完成，要点：
+- Ollama API：本地推理引擎原生接口（/api/generate、/api/chat），返回带推理性能指标，最适合本地/离线/不花钱；
+- OpenAI Chat Completions：事实标准（/v1/chat/completions，messages 数组，无状态），兼容性最广，Ollama 内置兼容层可直接跑；
+- OpenAI Responses：新一代状态化接口（/v1/responses，input+tools+store），服务端管上下文，面向 Agent 多步工具调用；
+- Anthropic Messages：Claude 系专用（/v1/messages，system 独立字段，content 块数组），长上下文与流式体验好；
+选型：本地→Ollama API；通用/切换→Chat Completions；Agent 任务→Responses；Claude 系→Messages。
+详细对比见 D:\开源微专业作业\0922_ollama\02_不同方式调用的区别.md。
+
+■ 格子：还可以给模型什么外挂
+已完成，8 类外挂：1)工具调用Function Calling（模型输出结构化工具名，程序执行回传）；2)MCP（统一工具接入协议，2026 Agent 事实标准）；3)RAG/知识库（检索增强，解决私有资料与幻觉）；4)Skill插件（SKILL.md说明书，按需调用，呼应0920装skills）；5)记忆Memory（短期messages历史+长期外部存储）；6)联网搜索（新闻skill等）；7)多模态输入（图/音/视频）；8)提示词工程（免费外挂）。
+核心结论：Agent = LLM + 上下文 + 工具；外挂本质就是"多喂上下文、多给工具"。
+详见 D:\开源微专业作业\0922_ollama\03_还可以给模型什么外挂.md。
+
+■ 格子：提交链接
+（待填：把你的仓库地址放这里，例如 https://gitcode.com/DianaCheng/f25011102-hw0922）
