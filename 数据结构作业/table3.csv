@@ -1,0 +1,5 @@
+﻿n,insert_at_first(elements moved),insert_at_last(elements moved),avg_move_count,n/2
+100,100,0,50.0,50.0
+1000,1000,0,500.0,500.0
+10000,10000,0,5000.0,5000.0
+100000,100000,0,50000.0,50000.0

@@ -1,0 +1,9 @@
+﻿接口,测试用例,预期结果,实际结果,是否通过
+get,歌单 5 首，调用 get(2),返回下标 2 的歌曲名,Song_000002,是
+insert,长度 5，在位置 2 插入 NewSong,长度变 6，位置 2 = NewSong,长度 = 6，get(2)=NewSong,是
+remove,长度 5，调用 remove(1),删除下标 1，长度变 4,删除了 Song_000001，长度 = 4,是
+indexOf,5 首歌，找最后一首 Song_000004,返回下标 4,返回下标 = 4,是
+边界：空歌单上删除,空歌单调用 remove(0),抛出越界异常,抛出 IndexError：越界：remove(0)，当前 0 首,是
+边界：越界位置,长度 5，调用 get(10),抛出越界异常,抛出 IndexError,是
+边界：插入位置为 length + 1,"长度 5，insert(5, TailSong)",合法尾部追加成功,长度 = 6，get(5)=TailSong,是
+边界：负数下标,长度 5，调用 get(-1),抛出越界异常,抛出 IndexError,是

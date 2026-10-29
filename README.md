@@ -14,6 +14,7 @@
 | `周四第二次作业/` | Gelu 算子实现：`gelu_kernel.cpp` 手写 kernel + `verify_gelu.py` 数值校验 |
 | `周四第三次作业/` | 开源合规与许可证检测分析报告（Word 文档）及其扫描原始产物 |
 | `周四第三次作业/扫描工作/` | ScanCode 扫描 Apache commons-lang 生成的完整报告：`scan-report.html`、`scan-report.json`、前端资源目录与校验 PDF |
+| `数据结构作业/` | 顺序表实现「我的歌单」：10 万条数据规模下的操作耗时与元素搬移次数实测，含代码、原始数据（1.3MB）、四张实测表格与作业报告 |
 
 ## 技术栈
 

@@ -1,0 +1,36 @@
+=== 顺序表歌单作业：完整运行日志 ===
+运行时间： 2026-10-06 22:42:11
+数据规模：n = 100 / 1000 / 10000 / 100000（共十万条，程序自动生成）
+输出目录： D:\f25011102成御萌的数据结构作业
+
+已生成原始数据文件：songs_100000.txt（100000 条歌名）
+
+=== 表 1：四种操作单次耗时 (μs) ===
+n=   100  get=    1.10  ins(mid)=   14.58  del(mid)=   14.78  idx(worst)=     7.53  ins(tail)=    0.99
+n=  1000  get=    1.08  ins(mid)=  280.78  del(mid)=  298.68  idx(worst)=   133.72  ins(tail)=    1.27
+n= 10000  get=    1.53  ins(mid)= 2574.62  del(mid)= 2683.89  idx(worst)=  1396.18  ins(tail)=    1.19
+n=100000  get=    1.42  ins(mid)=27063.46  del(mid)=26621.36  idx(worst)= 14568.26  ins(tail)=    3.27
+
+=== 表 2：插入位置影响 (μs) ===
+n=   100  head=   34.67  mid=   15.81  tail=    0.98  head/mid=2.19
+n=  1000  head=  556.08  mid=  288.90  tail=    0.91  head/mid=1.92
+n= 10000  head= 5447.37  mid= 2986.03  tail=    1.07  head/mid=1.82
+n=100000  head=67008.34  mid=37075.35  tail=    1.06  head/mid=1.81
+
+=== 表 3：元素搬移次数 ===
+n=   100  at_first=   100  at_last=   0  avg=    50.0  n/2=    50.0
+n=  1000  at_first=  1000  at_last=   0  avg=   500.0  n/2=   500.0
+n= 10000  at_first= 10000  at_last=   0  avg=  5000.0  n/2=  5000.0
+n=100000  at_first=100000  at_last=   0  avg= 50000.0  n/2= 50000.0
+
+=== 功能与边界自测（对应报告自测表）===
+  [是] get                  歌单 5 首，调用 get(2)  ->  Song_000002
+  [是] insert               长度 5，在位置 2 插入 NewSong  ->  长度 = 6，get(2)=NewSong
+  [是] remove               长度 5，调用 remove(1)  ->  删除了 Song_000001，长度 = 4
+  [是] indexOf              5 首歌，找最后一首 Song_000004  ->  返回下标 = 4
+  [是] 边界：空歌单上删除            空歌单调用 remove(0)  ->  抛出 IndexError：越界：remove(0)，当前 0 首
+  [是] 边界：越界位置              长度 5，调用 get(10)  ->  抛出 IndexError
+  [是] 边界：插入位置为 length + 1  长度 5，insert(5, TailSong)  ->  长度 = 6，get(5)=TailSong
+  [是] 边界：负数下标              长度 5，调用 get(-1)  ->  抛出 IndexError
+
+运行结束时间： 2026-10-06 22:45:41
