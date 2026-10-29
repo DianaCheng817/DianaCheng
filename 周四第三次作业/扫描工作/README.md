@@ -4,11 +4,11 @@
 
 ## 扫描对象
 
-Apache Commons Lang（Apache-2.0），通过 git 克隆官方仓库后使用 **ScanCode Toolkit** 全量扫描。第三方源码本身（约 10.3MB、846 个文件）**不上传到本仓库**，需要复现时执行：
+Apache Commons Lang（Apache-2.0），GitHub 主分支 commit `32dc4c5`（2026-10-07），使用 **ScanCode Toolkit 32.5.0** 全量扫描。第三方源码本身（约 10.3MB、846 个文件）**不上传到本仓库**，需要复现时执行：
 
 ```bash
 git clone https://github.com/apache/commons-lang.git
-scancode -clpieu --json-pp scan-report.json commons-lang
+scancode -l -c -p --json-pp scan-report.json --html-app scan-report.html --ignore "*.git*" commons-lang
 ```
 
 ## 文件说明
@@ -24,13 +24,14 @@ scancode -clpieu --json-pp scan-report.json commons-lang
 
 ## 结论摘要
 
-扫描共覆盖 **781** 个文件，许可证判定分布如下：
+扫描覆盖 **709 个文件、72 个目录**（JSON 报告共 781 条记录，其中 72 条为目录），许可证判定按文件统计如下：
 
 | 判定结果 | 文件数 | 占比 |
 | --- | --- | --- |
-| `apache-2.0` | 695 | 89.0% |
-| 未检出许可证声明 | 83 | 10.6% |
+| `apache-2.0` | 695 | 98.0% |
+| 未检出许可证声明（图片、JSON 数据、历史发布说明等） | 11 | 1.6% |
 | `apache-2.0 AND (generic-cla AND apache-2.0)` | 2 | 0.3% |
 | `apache-2.0 AND apache-1.1` | 1 | 0.1% |
+| 合计 | 709 | 100% |
 
-主体为 Apache-2.0，另有 1 个文件同时含 apache-1.1 声明、2 个文件含 generic-cla 声明；未检出 GPL/AGPL 等强传染性许可证。详细分析见上一级目录的作业报告。
+其中 698 个文件（98.4%）检出明确许可证表达式，主体为 Apache-2.0；未检出 GPL/AGPL 等强传染性许可证。详细分析与合规建议见上一级目录的作业报告。
