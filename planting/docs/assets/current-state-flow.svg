@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1730" height="1565" viewBox="0 0 1730 1565" role="img">
+<title>种植灌溉与农事记录 · 现状流程图</title>
+<rect x="0" y="0" width="1730" height="1565" fill="#ffffff"/>
+<text x="40.0" y="52.0" font-size="30" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">种植灌溉与农事记录 · 现状流程图（As-Is）</text>
+<text x="40.0" y="80.0" font-size="14" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">禾丰种植合作社 · 六角色访谈还原：触发 → 输入 → 交接 → 人工判断 → 输出 → 异常路径</text>
+<text x="40.0" y="106.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">资料：FDE 训练中心「项目练习 1」现场调研报告（任务 2）；事实编号 f00–f55；节点时限均未实测，瓶颈排序为待验证假设</text>
+<text x="40.0" y="136.0" font-size="13" fill="#59636f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">岗位 / 泳道</text>
+<text x="300.0" y="136.0" font-size="13" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">主流程（f01 六步）</text>
+<text x="700.0" y="136.0" font-size="13" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">异常路径与转人工</text>
+<text x="1280.0" y="136.0" font-size="13" fill="#2f5e73" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">只能由人完成的判断</text>
+<rect x="300" y="158" width="340" height="165" rx="10" fill="#f3f8f4" stroke="#2f6d4f" stroke-width="1.2"/>
+<rect x="300" y="158" width="6" height="165" rx="3" fill="#2f6d4f"/>
+<text x="320.0" y="184.0" font-size="16.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">T1 · 触发：田间墒情观测 / 巡田</text>
+<text x="320.0" y="211.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输入</text>
+<text x="378.0" y="211.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">传感器读数、地块图、作物生长期、天气</text>
+<text x="320.0" y="232.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="378.0" y="232.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">按固定点位巡田、读表、记录异常（24 地块</text>
+<text x="378.0" y="250.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">/ 每天 60 次观测）</text>
+<text x="320.0" y="271.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输出</text>
+<text x="378.0" y="271.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">观测记录（终端草稿，标注最后同步时间）</text>
+<text x="320.0" y="292.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">系统</text>
+<text x="378.0" y="292.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">农业物联平台（只读）</text>
+<text x="320.0" y="309.0" font-size="10.5" fill="#2f6d4f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f12 f13 f21</text>
+<rect x="40" y="213" width="230" height="54" rx="8" fill="#eef2ee" stroke="#d8dee4"/>
+<text x="155.0" y="235.0" font-size="13.5" fill="#2f6d4f" font-weight="600" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">林亦舟</text>
+<text x="155.0" y="251.0" font-size="10.5" fill="#59636f" font-weight="400" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">田间技术员</text>
+<rect x="300" y="349" width="340" height="165" rx="10" fill="#f3f8f4" stroke="#2f6d4f" stroke-width="1.2"/>
+<rect x="300" y="349" width="6" height="165" rx="3" fill="#2f6d4f"/>
+<text x="320.0" y="375.0" font-size="16.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">T2 · 核查：天气核对与观测汇总</text>
+<text x="320.0" y="402.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输入</text>
+<text x="378.0" y="402.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">当日观测记录 + 天气预报</text>
+<text x="320.0" y="423.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="378.0" y="423.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">逐条核对天气与作物生长期，人工汇总全部</text>
+<text x="378.0" y="441.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">观测（约 90 分钟 / 天）</text>
+<text x="320.0" y="462.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输出</text>
+<text x="378.0" y="462.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">当日观测汇总表</text>
+<text x="320.0" y="483.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">系统</text>
+<text x="378.0" y="483.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">气象服务（只读）、农事表（只读）</text>
+<text x="320.0" y="500.0" font-size="10.5" fill="#2f6d4f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f01 f12 f21</text>
+<rect x="40" y="404" width="230" height="54" rx="8" fill="#eef2ee" stroke="#d8dee4"/>
+<text x="155.0" y="426.0" font-size="13.5" fill="#2f6d4f" font-weight="600" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">林亦舟 / 唐映秋</text>
+<text x="155.0" y="442.0" font-size="10.5" fill="#59636f" font-weight="400" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">汇总</text>
+<rect x="300" y="540" width="340" height="183" rx="10" fill="#f3f8f4" stroke="#2f6d4f" stroke-width="1.2"/>
+<rect x="300" y="540" width="6" height="183" rx="3" fill="#2f6d4f"/>
+<text x="320.0" y="566.0" font-size="16.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">T3 · 计划：灌溉计划与建议生成</text>
+<text x="320.0" y="593.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输入</text>
+<text x="378.0" y="593.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">观测汇总、灌溉记录、规则版本（按生效日</text>
+<text x="378.0" y="611.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">期与适用范围选取）</text>
+<text x="320.0" y="632.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="378.0" y="632.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">生成灌溉建议；写清每步输入、输出与待办</text>
+<text x="378.0" y="650.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">责任人</text>
+<text x="320.0" y="671.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输出</text>
+<text x="378.0" y="671.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">灌溉建议（仅解释，不下发执行指令）</text>
+<text x="320.0" y="692.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">系统</text>
+<text x="378.0" y="692.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">农事表 + 规则库（只读）</text>
+<text x="320.0" y="709.0" font-size="10.5" fill="#2f6d4f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f20 f24 f32 f05</text>
+<rect x="40" y="604" width="230" height="54" rx="8" fill="#eef2ee" stroke="#d8dee4"/>
+<text x="155.0" y="626.0" font-size="13.5" fill="#2f6d4f" font-weight="600" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">唐映秋</text>
+<text x="155.0" y="642.0" font-size="10.5" fill="#59636f" font-weight="400" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">农事计划员</text>
+<rect x="300" y="749" width="340" height="165" rx="10" fill="#f3f8f4" stroke="#2f6d4f" stroke-width="1.2"/>
+<rect x="300" y="749" width="6" height="165" rx="3" fill="#2f6d4f"/>
+<text x="320.0" y="775.0" font-size="16.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">T4 · 执行：人工灌溉作业</text>
+<text x="320.0" y="802.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输入</text>
+<text x="378.0" y="802.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">经确认的灌溉计划（异常建议不得进入本步）</text>
+<text x="320.0" y="823.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="378.0" y="823.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">人工开阀 / 灌溉；用水与作物安全条件由农</text>
+<text x="378.0" y="841.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">业人员核实</text>
+<text x="320.0" y="862.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输出</text>
+<text x="378.0" y="862.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">执行结果（人工记录）</text>
+<text x="320.0" y="883.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">系统</text>
+<text x="378.0" y="883.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">无 —— 系统只读，不自动启泵、不自动施药</text>
+<text x="320.0" y="900.0" font-size="10.5" fill="#2f6d4f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f05 f32 f40</text>
+<rect x="40" y="804" width="230" height="54" rx="8" fill="#eef2ee" stroke="#d8dee4"/>
+<text x="155.0" y="826.0" font-size="13.5" fill="#2f6d4f" font-weight="600" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">田间作业人员</text>
+<text x="155.0" y="842.0" font-size="10.5" fill="#59636f" font-weight="400" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">执行</text>
+<rect x="300" y="940" width="340" height="183" rx="10" fill="#f3f8f4" stroke="#2f6d4f" stroke-width="1.2"/>
+<rect x="300" y="940" width="6" height="183" rx="3" fill="#2f6d4f"/>
+<text x="320.0" y="966.0" font-size="16.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">T5 · 记录：观测与执行结果登记、交接</text>
+<text x="320.0" y="993.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输入</text>
+<text x="378.0" y="993.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">执行结果、现场说明、异常标记</text>
+<text x="320.0" y="1014.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="378.0" y="1014.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">登记农事表；交接须含业务编号、当前版本、</text>
+<text x="378.0" y="1032.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">处理状态、未解决事项、接手人</text>
+<text x="320.0" y="1053.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输出</text>
+<text x="378.0" y="1053.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">农事记录 + 交接单（接手人确认方为完成）</text>
+<text x="320.0" y="1074.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">系统</text>
+<text x="378.0" y="1074.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">农事表（只读）；补充说明常落在个人便签</text>
+<text x="378.0" y="1092.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">/ 工作群</text>
+<text x="320.0" y="1109.0" font-size="10.5" fill="#2f6d4f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f14 f23 f30</text>
+<rect x="40" y="1004" width="230" height="54" rx="8" fill="#eef2ee" stroke="#d8dee4"/>
+<text x="155.0" y="1026.0" font-size="13.5" fill="#2f6d4f" font-weight="600" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">林亦舟 / 唐映秋</text>
+<text x="155.0" y="1042.0" font-size="10.5" fill="#59636f" font-weight="400" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">记录与交接</text>
+<rect x="300" y="1149" width="340" height="188" rx="10" fill="#f3f8f4" stroke="#2f6d4f" stroke-width="1.2"/>
+<rect x="300" y="1149" width="6" height="188" rx="3" fill="#2f6d4f"/>
+<text x="320.0" y="1175.0" font-size="16.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">T6 · 复查：复核签字 / 质控留痕 / 服</text>
+<text x="320.0" y="1198.0" font-size="16.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">务验收</text>
+<text x="320.0" y="1225.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输入</text>
+<text x="378.0" y="1225.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">记录、异常标记、核验凭证</text>
+<text x="320.0" y="1246.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="378.0" y="1246.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">田间技术员复核签字；质控核对审计要素；</text>
+<text x="378.0" y="1264.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">每周收集误判与未解决问题</text>
+<text x="320.0" y="1285.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">输出</text>
+<text x="378.0" y="1285.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">复核结论、验收意见、下一轮规则版本</text>
+<text x="320.0" y="1306.0" font-size="12.5" fill="#2f6d4f" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">系统</text>
+<text x="378.0" y="1306.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">三套系统（账号独立，无统一业务状态视图）</text>
+<text x="320.0" y="1323.0" font-size="10.5" fill="#2f6d4f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f15 f45 f02 f55</text>
+<rect x="40" y="1216" width="230" height="54" rx="8" fill="#eef2ee" stroke="#d8dee4"/>
+<text x="155.0" y="1238.0" font-size="13.5" fill="#2f6d4f" font-weight="600" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">林亦舟 / 傅景 / 叶书</text>
+<text x="155.0" y="1254.0" font-size="10.5" fill="#59636f" font-weight="400" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">复核与验收</text>
+<line x1="470.0" y1="323" x2="470.0" y2="349" stroke="#2f6d4f" stroke-width="1.6"/>
+<path d="M465.0,343 L470.0,349 L475.0,343" fill="none" stroke="#2f6d4f" stroke-width="1.6"/>
+<line x1="470.0" y1="514" x2="470.0" y2="540" stroke="#2f6d4f" stroke-width="1.6"/>
+<path d="M465.0,534 L470.0,540 L475.0,534" fill="none" stroke="#2f6d4f" stroke-width="1.6"/>
+<line x1="470.0" y1="723" x2="470.0" y2="749" stroke="#2f6d4f" stroke-width="1.6"/>
+<path d="M465.0,743 L470.0,749 L475.0,743" fill="none" stroke="#2f6d4f" stroke-width="1.6"/>
+<line x1="470.0" y1="914" x2="470.0" y2="940" stroke="#2f6d4f" stroke-width="1.6"/>
+<path d="M465.0,934 L470.0,940 L475.0,934" fill="none" stroke="#2f6d4f" stroke-width="1.6"/>
+<line x1="470.0" y1="1123" x2="470.0" y2="1149" stroke="#2f6d4f" stroke-width="1.6"/>
+<path d="M465.0,1143 L470.0,1149 L475.0,1143" fill="none" stroke="#2f6d4f" stroke-width="1.6"/>
+<path d="M640,240.5 L660,240.5 L660,231.5 L696,231.5" fill="none" stroke="#b05a2b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<path d="M690,226.5 L698,231.5 L690,236.5" fill="none" stroke="#b05a2b" stroke-width="1.3"/>
+<rect x="700" y="158" width="540" height="147" rx="10" fill="#fdf5ef" stroke="#b05a2b" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="718.0" y="184.0" font-size="15.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">E1 · 传感器被拔出 / 读数异常</text>
+<text x="718.0" y="208.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">触发</text>
+<text x="776.0" y="208.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">读数明显偏低，系统判定为严重缺水</text>
+<text x="718.0" y="228.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="776.0" y="228.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">暂停该灌溉建议 → 交农事计划员核对 → 错误结果不得覆盖原记录</text>
+<text x="718.0" y="248.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">接手</text>
+<text x="776.0" y="248.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">唐映秋分派 → 林亦舟复核签字</text>
+<text x="718.0" y="268.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">留痕</text>
+<text x="776.0" y="268.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">触发原因、接手人、确认时间</text>
+<text x="718.0" y="291.0" font-size="10.5" fill="#b05a2b" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f11 f15 f44</text>
+<path d="M640,631.5 L668,631.5 L668,405.5 L696,405.5" fill="none" stroke="#b05a2b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<path d="M690,400.5 L698,405.5 L690,410.5" fill="none" stroke="#b05a2b" stroke-width="1.3"/>
+<rect x="700" y="323" width="540" height="165" rx="10" fill="#fdf5ef" stroke="#b05a2b" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="718.0" y="349.0" font-size="15.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">E2 · 积水地块仍被建议灌溉</text>
+<text x="718.0" y="373.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">触发</text>
+<text x="776.0" y="373.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">地块已积水，系统仍输出灌溉建议</text>
+<text x="718.0" y="393.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="776.0" y="393.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">判定为数据口径问题 → 先定异常判定规则 → 进人工修复队列，不进自动推荐样本</text>
+<text x="718.0" y="413.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">接手</text>
+<text x="776.0" y="413.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">秦芮（口径修复）→ 唐映秋（单据标注）</text>
+<text x="718.0" y="433.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">留痕</text>
+<text x="776.0" y="433.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">歧义记录编号、修复前后对照</text>
+<text x="718.0" y="474.0" font-size="10.5" fill="#b05a2b" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f10 f31 f33</text>
+<path d="M640,631.5 L676,631.5 L676,579.5 L696,579.5" fill="none" stroke="#b05a2b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<path d="M690,574.5 L698,579.5 L690,584.5" fill="none" stroke="#b05a2b" stroke-width="1.3"/>
+<rect x="700" y="506" width="540" height="147" rx="10" fill="#fdf5ef" stroke="#b05a2b" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="718.0" y="532.0" font-size="15.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">E3 · 规则版本冲突</text>
+<text x="718.0" y="556.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">触发</text>
+<text x="776.0" y="556.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">同一步骤存在两个生效版本或适用范围不一致</text>
+<text x="718.0" y="576.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="776.0" y="576.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">附两套版本一并提交质控裁定；不得自行合并、不得选宽松条款</text>
+<text x="718.0" y="596.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">接手</text>
+<text x="776.0" y="596.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">傅景（质控员裁定）</text>
+<text x="718.0" y="616.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">留痕</text>
+<text x="776.0" y="616.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">两版规则 + 裁定结论 + 回填人</text>
+<text x="718.0" y="639.0" font-size="10.5" fill="#b05a2b" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f24 f44</text>
+<path d="M640,831.5 L684,831.5 L684,744.5 L696,744.5" fill="none" stroke="#b05a2b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<path d="M690,739.5 L698,744.5 L690,749.5" fill="none" stroke="#b05a2b" stroke-width="1.3"/>
+<rect x="700" y="671" width="540" height="147" rx="10" fill="#fdf5ef" stroke="#b05a2b" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="718.0" y="697.0" font-size="15.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">E4 · 关键系统不可用 / 接口中断</text>
+<text x="718.0" y="721.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">触发</text>
+<text x="776.0" y="721.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">物联平台、气象服务或农事表不可用，计划读不到</text>
+<text x="718.0" y="741.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="776.0" y="741.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">改用带时间戳的只读快照，界面显示「暂未更新」；人工流程照常</text>
+<text x="718.0" y="761.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">接手</text>
+<text x="776.0" y="761.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">秦芮重连后按业务编号去重补齐</text>
+<text x="718.0" y="781.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">留痕</text>
+<text x="776.0" y="781.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">快照时间戳、补齐记录</text>
+<text x="718.0" y="804.0" font-size="10.5" fill="#b05a2b" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f30 f35 f44</text>
+<path d="M640,1031.5 L692,1031.5 L692,909.5 L696,909.5" fill="none" stroke="#b05a2b" stroke-width="1.3" stroke-dasharray="6 4"/>
+<path d="M690,904.5 L698,909.5 L690,914.5" fill="none" stroke="#b05a2b" stroke-width="1.3"/>
+<rect x="700" y="836" width="540" height="147" rx="10" fill="#fdf5ef" stroke="#b05a2b" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="718.0" y="862.0" font-size="15.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">E5 · 交接未确认（仅发消息）</text>
+<text x="718.0" y="886.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">触发</text>
+<text x="776.0" y="886.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">只在群里发消息，接手人未确认</text>
+<text x="718.0" y="906.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">动作</text>
+<text x="776.0" y="906.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">不视为完成 → 补齐五要素 → 超约定时限升级到合作社负责人</text>
+<text x="718.0" y="926.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">接手</text>
+<text x="776.0" y="926.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">唐映秋分派；跨岗须明确下一责任人</text>
+<text x="718.0" y="946.0" font-size="11.5" fill="#b05a2b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">留痕</text>
+<text x="776.0" y="946.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">接手人确认时间、升级记录</text>
+<text x="718.0" y="969.0" font-size="10.5" fill="#b05a2b" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">证据 f23 f25 f51</text>
+<rect x="1280" y="158" width="410" height="248" rx="10" fill="#f2f7fa" stroke="#2f5e73" stroke-width="1.2"/>
+<text x="1298.0" y="188.0" font-size="15.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">系统不能替代的五类判断</text>
+<rect x="1296" y="203" width="26" height="18" rx="4" fill="#2f5e73"/>
+<text x="1309.0" y="216.0" font-size="10.5" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">J1</text>
+<text x="1330.0" y="216.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">读数与现场是否相符 —— 林亦舟复核签字后才算数（f15）</text>
+<rect x="1296" y="231" width="26" height="18" rx="4" fill="#2f5e73"/>
+<text x="1309.0" y="244.0" font-size="10.5" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">J2</text>
+<text x="1330.0" y="244.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">异常读数核验 —— 不驱动执行；用水与作物安全由农业人员</text>
+<text x="1330.0" y="262.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">核实（f40）</text>
+<rect x="1296" y="277" width="26" height="18" rx="4" fill="#2f5e73"/>
+<text x="1309.0" y="290.0" font-size="10.5" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">J3</text>
+<text x="1330.0" y="290.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">交接是否完成 —— 接手人确认才算完成，仅发消息不算（f23）</text>
+<rect x="1296" y="305" width="26" height="18" rx="4" fill="#2f5e73"/>
+<text x="1309.0" y="318.0" font-size="10.5" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">J4</text>
+<text x="1330.0" y="318.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">规则版本冲突裁定 —— 质控员裁定，处理人不得自行合并</text>
+<text x="1330.0" y="336.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">（f24）</text>
+<rect x="1296" y="351" width="26" height="18" rx="4" fill="#2f5e73"/>
+<text x="1309.0" y="364.0" font-size="10.5" fill="#ffffff" font-weight="700" text-anchor="middle" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">J5</text>
+<text x="1330.0" y="364.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">最终决定 / 对外承诺 / 资产变更 —— 对应审批人本人确认，</text>
+<text x="1330.0" y="382.0" font-size="12.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">禁止借用账号（f41）</text>
+<text x="40.0" y="1369.0" font-size="14" fill="#8a6d3b" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">瓶颈与责任人（量化基线待样本验证）</text>
+<rect x="40.0" y="1383" width="397.5" height="102" rx="8" fill="#fdf9ef" stroke="#8a6d3b" stroke-width="1"/>
+<rect x="40.0" y="1383" width="397.5" height="4" rx="2" fill="#8a6d3b"/>
+<text x="56.0" y="1413.0" font-size="13.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">B1 · 人工汇总耗时</text>
+<text x="56.0" y="1435.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">24 地块、每天 60 次观测，人工汇总约 90 分钟 / 天</text>
+<text x="56.0" y="1455.0" font-size="12" fill="#8a6d3b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">责任人：林亦舟</text>
+<text x="56.0" y="1471.0" font-size="11" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">单岗位口径，待样本验证 · f12 f51</text>
+<rect x="457.5" y="1383" width="397.5" height="102" rx="8" fill="#fdf9ef" stroke="#8a6d3b" stroke-width="1"/>
+<rect x="457.5" y="1383" width="397.5" height="4" rx="2" fill="#8a6d3b"/>
+<text x="473.5" y="1413.0" font-size="13.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">B2 · 交接无标准载体</text>
+<text x="473.5" y="1435.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">关键说明留在便签与工作群，不随单据交接；仅发消息不算完成</text>
+<text x="473.5" y="1455.0" font-size="12" fill="#8a6d3b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">责任人：林亦舟 / 唐映秋</text>
+<text x="473.5" y="1471.0" font-size="11" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">漏填比例未采集 · f14 f23</text>
+<rect x="875.0" y="1383" width="397.5" height="102" rx="8" fill="#fdf9ef" stroke="#8a6d3b" stroke-width="1"/>
+<rect x="875.0" y="1383" width="397.5" height="4" rx="2" fill="#8a6d3b"/>
+<text x="891.0" y="1413.0" font-size="13.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">B3 · 三套系统无统一视图</text>
+<text x="891.0" y="1435.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">物联平台、气象服务、农事表账号权限独立，业务状态需人工拼接</text>
+<text x="891.0" y="1455.0" font-size="12" fill="#8a6d3b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">责任人：秦芮</text>
+<text x="891.0" y="1471.0" font-size="11" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">接口能力未核实 · f30</text>
+<rect x="1292.5" y="1383" width="397.5" height="102" rx="8" fill="#fdf9ef" stroke="#8a6d3b" stroke-width="1"/>
+<rect x="1292.5" y="1383" width="397.5" height="4" rx="2" fill="#8a6d3b"/>
+<text x="1308.5" y="1413.0" font-size="13.5" fill="#1f2328" font-weight="700" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">B4 · 传感器口径不统一</text>
+<text x="1308.5" y="1435.0" font-size="12" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">埋深与校准记录不完整，地块面积单位不统一，异常无法自动判定</text>
+<text x="1308.5" y="1455.0" font-size="12" fill="#8a6d3b" font-weight="600" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">责任人：秦芮</text>
+<text x="1308.5" y="1471.0" font-size="11" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">字段清单待补 · f31 f33</text>
+<line x1="40" y1="1541" x2="74" y2="1541" stroke="#2f6d4f" stroke-width="2"/>
+<text x="82.0" y="1545.0" font-size="11.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">主流程（六步）</text>
+<line x1="210" y1="1541" x2="244" y2="1541" stroke="#b05a2b" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="252.0" y="1545.0" font-size="11.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">异常路径 / 转人工</text>
+<rect x="390" y="1535" width="16" height="12" rx="3" fill="#8a6d3b"/>
+<text x="414.0" y="1545.0" font-size="11.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">瓶颈与责任人</text>
+<rect x="540" y="1535" width="16" height="12" rx="3" fill="#2f5e73"/>
+<text x="564.0" y="1545.0" font-size="11.5" fill="#59636f" font-weight="400" text-anchor="start" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">必须人工完成的判断</text>
+<text x="1690.0" y="1545.0" font-size="11" fill="#59636f" font-weight="400" text-anchor="end" font-family="'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', sans-serif">合成训练案例 · 不代表真实授权、业务执行或客户验收</text>
+</svg>
