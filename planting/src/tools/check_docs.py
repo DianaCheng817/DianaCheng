@@ -70,16 +70,25 @@ def main():
     try:
         with io.open(data, encoding="utf-8") as f:
             model = json.load(f)
-        for key in ("mainFlow", "exceptions", "humanJudgements", "bottlenecks"):
+        for key in ("mainFlow", "decisions", "exceptions", "humanJudgements", "bottlenecks"):
             if not model.get(key):
                 problems.append(f"process-model.json 缺少 {key}")
+        node_ids = {n["id"] for n in model["mainFlow"]}
+        exc_ids = {e["id"] for e in model["exceptions"]}
         for n in model["mainFlow"]:
             for ref in n["refs"]:
                 if ref not in VALID_FACTS:
                     problems.append(f"process-model.json 节点 {n['id']} 证据编号越界 -> {ref}")
         for e in model["exceptions"]:
-            if e["from"] not in {n["id"] for n in model["mainFlow"]}:
+            if e["from"] not in node_ids:
                 problems.append(f"process-model.json 异常 {e['id']} 挂载节点不存在 -> {e['from']}")
+        for d in model["decisions"]:
+            if d["after"] not in node_ids:
+                problems.append(f"process-model.json 判断 {d['id']} 挂在未知节点 -> {d['after']}")
+            if d["failTarget"] != "APPROVAL" and d["failTarget"] not in exc_ids:
+                problems.append(f"process-model.json 判断 {d['id']} 不通过分支落点不存在 -> {d['failTarget']}")
+            if d["id"] not in {h[0] for h in model["humanJudgements"]}:
+                problems.append(f"process-model.json 判断 {d['id']} 在判断口径面板中缺少对应条目")
     except Exception as e:
         problems.append(f"process-model.json 解析失败: {e}")
 

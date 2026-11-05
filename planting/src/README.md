@@ -39,6 +39,9 @@ python src\tools\check_docs.py
 | 字段 | 含义 |
 | --- | --- |
 | `mainFlow[]` | 主流程节点：`id`、`lane`（岗位泳道）、`fields`（输入/动作/输出/系统）、`refs`（证据编号） |
+| `decisions[]` | 判断点（菱形）：`after`（挂在哪个节点之后）、`q`（判断问题）、`passLabel/passText`（通过分支）、`failLabel/failTarget/failText`（不通过分支及落点） |
 | `exceptions[]` | 异常路径：`from`（挂在哪个主流程节点）、`fields`（触发/动作/接手/留痕）、`refs` |
-| `humanJudgements[]` | 只能由人完成的判断，格式 `[编号, 判断, 说明]` |
+| `humanJudgements[]` | 判断口径（面板文字），格式 `[编号, 判断, 说明]` |
 | `bottlenecks[]` | 瓶颈：`owner`（责任人）、`status`（基线状态）、`refs` |
+
+`failTarget` 取值为某个异常编号（如 `E1`），或 `APPROVAL`（转出流程外的人工审批）。

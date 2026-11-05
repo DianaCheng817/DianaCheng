@@ -87,6 +87,63 @@
       "refs": ["f15", "f45", "f02", "f55"]
     }
   ],
+  "decisions": [
+    {
+      "id": "J1",
+      "after": "T1",
+      "q": "读数与现场相符？",
+      "passLabel": "是",
+      "passText": "进入核查",
+      "failLabel": "否",
+      "failTarget": "E1",
+      "failText": "暂停建议、人工核验",
+      "refs": ["f15"]
+    },
+    {
+      "id": "J2",
+      "after": "T2",
+      "q": "异常读数已核验？",
+      "passLabel": "是",
+      "passText": "进入计划",
+      "failLabel": "否",
+      "failTarget": "E2",
+      "failText": "人工修复、不进推荐",
+      "refs": ["f40", "f42"]
+    },
+    {
+      "id": "J4",
+      "after": "T3",
+      "q": "规则版本冲突？",
+      "passLabel": "否",
+      "passText": "进入执行",
+      "failLabel": "是",
+      "failTarget": "E3",
+      "failText": "附两版交质控裁定",
+      "refs": ["f24"]
+    },
+    {
+      "id": "J5",
+      "after": "T4",
+      "q": "需本人审批？",
+      "passLabel": "否",
+      "passText": "继续记录",
+      "failLabel": "是",
+      "failTarget": "APPROVAL",
+      "failText": "转审批人本人确认，不在本流程内闭环",
+      "refs": ["f41"]
+    },
+    {
+      "id": "J3",
+      "after": "T5",
+      "q": "接手人已确认？",
+      "passLabel": "是",
+      "passText": "进入复查",
+      "failLabel": "否",
+      "failTarget": "E5",
+      "failText": "补五要素、超时升级",
+      "refs": ["f23"]
+    }
+  ],
   "exceptions": [
     {
       "id": "E1",
