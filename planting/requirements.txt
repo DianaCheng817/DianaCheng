@@ -1,0 +1,11 @@
+# ============================================================
+# 运行依赖（Python 3.11+）
+# 安装：pip install -r requirements.txt
+# ============================================================
+fastapi>=0.110.0          # Web 服务框架，对外提供 REST 接口
+uvicorn[standard]>=0.29.0 # ASGI 运行器，启动 FastAPI
+pydantic>=2.6.0           # 请求 / 响应模型与校验
+PyYAML>=6.0.1             # 读取 config.yaml
+requests>=2.31.0          # 调用本地 Ollama HTTP 接口
+networkx>=3.2.0           # 知识图谱（有向图）存储与查询
+python-docx>=1.1.0        # 生成 docs/06-技术方案.docx

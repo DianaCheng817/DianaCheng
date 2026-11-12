@@ -1,0 +1,31 @@
+# ============================================================
+# Git 忽略清单
+# ============================================================
+
+# 虚拟环境（本地创建，不入库）
+.venv/
+venv/
+
+# Python 编译产物
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 知识图谱持久化文件：由 app/kg/seed.py 自动生成，属于派生数据
+kg_store/*.json
+
+# 运行与验证的临时输出
+verify_out.txt
+verify_online.txt
+diag2.txt
+docx_out.txt
+dchk.txt
+gitchk.txt
+tmp/
+*.log
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

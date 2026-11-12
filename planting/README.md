@@ -128,6 +128,56 @@ python src\tools\check_docs.py
 
 ---
 
+## 智能体服务（FastAPI + 知识图谱 + 本地 Ollama）
+
+资料包之外，本仓库同时提供一个**可运行的调研智能体**：把 36 条访谈事实建成知识图谱，
+让本地模型只能基于图谱证据写作，再用 Harness 在返回前拦截编造。
+
+### 启动
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python run.py
+```
+
+- 接口文档：<http://127.0.0.1:8000/docs>
+- 健康检查：<http://127.0.0.1:8000/health>
+- 模型名：`config.yaml` 的 `ollama.model_name`，**必须与 `ollama list` 完全一致**；
+  不一致时探活判定不可用，自动降级为模板引擎，不会报错中断
+
+### 验证与产出
+
+```powershell
+python scripts\verify.py            # 离线验证：48 项断言
+python scripts\verify.py --online   # 在线验证：额外覆盖 7 个 HTTP 用例
+python scripts\build_docx.py        # 技术方案 md -> docx
+python src\tools\check_docs.py      # 原有文档自检（证据编号、图片、SVG）
+```
+
+### 服务目录
+
+| 路径 | 说明 |
+| --- | --- |
+| `app/main.py` | FastAPI 入口，lifespan 内加载知识图谱 |
+| `app/core/` | 配置、统一返回结构、异常、日志 |
+| `app/kg/` | 知识图谱（`seed.py` 为 36 条事实的落库来源） |
+| `app/llm/` | Ollama 客户端，探活 + 生成 + 降级 |
+| `app/harness/` | H1–H8 八条合规规则与加权评分 |
+| `app/services/` | 提示词三层编排与六关卡生成 |
+| `config.yaml` | 唯一配置源（模型地址、路径、规则词表） |
+| `scripts/verify.py` | 阶段验证脚本 |
+| `docs/06-技术方案.md` / `.docx` | 技术方案（同源生成，内容一致） |
+| `docs/07-智能体提示词.md` | 完整提示词集，可直接手工复制使用 |
+
+### 设计取舍一句话
+
+不做「更聪明的模型」，做「不会编造的流程」：模型输出先过 Harness，
+未通过即丢弃并改走证据模板，因此不合规内容永远不会到达调用方。
+
+---
+
 ## 免责声明
 
 本项目为 FDE 训练中心的合成训练案例，角色、企业、数字均为虚构。
