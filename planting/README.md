@@ -236,6 +236,22 @@ docker run -p 8000:8000 --env-file .env planting-agent
 2. 在平台环境变量中配置 `JWT_SECRET`、`ADMIN_USERNAME`、`ADMIN_PASSWORD`，按需配置远程模型；
 3. 平台分配的公网地址即 MVP 可访问网址；本地无 Ollama 时问答自动走证据模板，不影响服务可用性。
 
+**Render 一键部署（推荐，本仓库已内置 `render.yaml` 蓝图）**：
+
+1. 用 GitHub 账号登录 <https://render.com>，进入 Dashboard → New → **Blueprint**；
+2. 授权 Render 访问 `DianaCheng817/DianaCheng`，选择包含 `planting/render.yaml` 的仓库；
+3. Render 读取蓝图后自动创建名为 `planting-agent` 的免费 Web 服务（rootDir 为 `planting`）；
+4. 在服务的 Environment 页补齐 `ADMIN_USERNAME`、`ADMIN_PASSWORD`（蓝图已自动注入随机 `JWT_SECRET`），按需配置远程模型；
+5. 部署完成后，Render 分配形如 `https://planting-agent-xxxx.onrender.com` 的公网地址，即为 MVP 网址；
+6. 打开该地址验证：首页 `/`、`/docs`、`/health`、Wiki 浏览、注册登录与问答链路。
+
+> 部署 prerequisite：需要一个 Render / Railway 平台账号并在网页完成 GitHub 授权。
+> 账号授权属于平台侧人工操作，脚本无法代劳；未配置平台账号时，本地 `python run.py` 完全可用。
+> 免费套餐首次部署有冷启动，首次访问可能等待 30–60 秒。
+
+**当前部署状态**：代码、蓝图（`render.yaml`）、Dockerfile 均已入库并通过本地 64 项在线验证；
+公网网址需在完成平台账号授权后由平台分配，未取得真实网址前不做占位或虚构。
+
 ### 验证与产出
 
 ```powershell
