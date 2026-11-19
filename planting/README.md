@@ -245,6 +245,15 @@ docker run -p 8000:8000 --env-file .env planting-agent
 5. 部署完成后，Render 分配形如 `https://planting-agent-xxxx.onrender.com` 的公网地址，即为 MVP 网址；
 6. 打开该地址验证：首页 `/`、`/docs`、`/health`、Wiki 浏览、注册登录与问答链路。
 
+**Railway 一键部署（备选，当前网络下 Railway 可达）**：
+
+1. 用 GitHub / Google / 邮箱登录 <https://railway.com>；
+2. New Project → **Deploy from GitHub repo** → 授权并选择 `DianaCheng817/DianaCheng`；
+3. Railway 识别根目录后，把服务的 Root Directory 设为 `planting`，它会用 `Dockerfile` 自动构建；
+4. 在服务的 Variables 页添加 `ADMIN_USERNAME`、`ADMIN_PASSWORD`、`JWT_SECRET`（随机长串）；
+5. Settings → Networking → Generate Domain，生成形如 `https://xxx.railway.app` 的公网地址；
+6. 打开该地址验证首页、`/docs`、`/health`、Wiki 与问答链路。
+
 > 部署 prerequisite：需要一个 Render / Railway 平台账号并在网页完成 GitHub 授权。
 > 账号授权属于平台侧人工操作，脚本无法代劳；未配置平台账号时，本地 `python run.py` 完全可用。
 > 免费套餐首次部署有冷启动，首次访问可能等待 30–60 秒。
