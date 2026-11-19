@@ -258,22 +258,27 @@ docker run -p 8000:8000 --env-file .env planting-agent
 > 账号授权属于平台侧人工操作，脚本无法代劳；未配置平台账号时，本地 `python run.py` 完全可用。
 > 免费套餐首次部署有冷启动，首次访问可能等待 30–60 秒。
 
-**当前公网 MVP 网址（可外部访问，已实测）**：
+**正式公网 MVP 网址（永久固定，平台托管，已实测）**：
 
 | 项目 | 内容 |
 |---|---|
-| 公网首页 | https://jam-kingston-vampire-inputs.trycloudflare.com/ |
-| 接口文档 | https://jam-kingston-vampire-inputs.trycloudflare.com/docs |
-| 健康检查 | https://jam-kingston-vampire-inputs.trycloudflare.com/health |
-| 访问方式 | Cloudflare Tunnel 临时快速隧道（无需账号、无需登录、任何人可直接打开） |
-| 实测结果 | 首页 / `/health` / `/docs` / `/openapi.json` 均 HTTP 200；注册→登录→问答→Wiki 溯源→越权拦截全链路公网实测通过 |
-| 首页截图 | `screenshots/mvp-public-home.png` |
+| 公网首页 | **https://planting-agent-production.up.railway.app/** |
+| 接口文档 | https://planting-agent-production.up.railway.app/docs |
+| 健康检查 | https://planting-agent-production.up.railway.app/health |
+| 托管平台 | Railway（账号 evanlu122817@qq.com / DianaCheng817，项目 `planting-agent`，production 环境） |
+| 部署方式 | 连接 GitHub 仓库 `DianaCheng817/DianaCheng` 的 `main` 分支，Root Directory = `planting`，NIXPACKS 构建，自动部署（push 即更新） |
+| 实测结果 | 首页 / `/health` / `/docs` / `/openapi.json` 均 HTTP 200；注册→登录→问答（Harness 100 分、证据 f02/f40）→Wiki 溯源 f12→越权拦截，全链路公网实测通过 |
+| 首页截图 | `screenshots/mvp-railway-permanent.png` |
 
-> 该网址由 Cloudflare 快速隧道把本机 `127.0.0.1:8000` 的服务映射为公网 `https` 地址，
-> **依赖本机服务进程与隧道进程运行**，属于演示用的临时地址，关机或进程退出后失效；
-> 若要长期稳定对外服务，请按上文 Render / Railway 步骤部署到平台（代码与蓝图均已就绪）。
-> 隧道启动命令（可复现）：`cloudflared tunnel --url http://127.0.0.1:8000 --protocol http2`；
-> 本机启动命令：`python run.py`。
+> 该地址为平台分配的**永久固定域名**，不依赖本机进程，关机后老师仍可访问；代码 push 到仓库会自动重新部署。
+> 关键修复：Railway 注入 `PORT` 环境变量，启动命令必须用 `sh -c 'exec uvicorn ... --port $PORT'` 做 shell 展开（见 `Dockerfile` 与 `scripts/expose_public.bat`）。
+> 管理员默认账号：`admin` / `Planting@MVP2026`（密码由环境变量 `ADMIN_PASSWORD` 注入，可随时在 Railway Variables 修改）。
+
+**备用：本地演示临时地址**（无需账号、随时可开）：
+
+> `cloudflared tunnel --url http://127.0.0.1:8000 --protocol http2` 会生成形如
+> `https://xxx.trycloudflare.com` 的临时地址，依赖本机服务与隧道进程运行，关机即失效，仅作离线演示兜底；
+> 双击 `scripts\expose_public.bat` 可一键启动"本地服务 + 隧道"。**正式访问请用上方 Railway 固定网址。**
 
 ### 验证与产出
 
