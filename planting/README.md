@@ -258,8 +258,22 @@ docker run -p 8000:8000 --env-file .env planting-agent
 > 账号授权属于平台侧人工操作，脚本无法代劳；未配置平台账号时，本地 `python run.py` 完全可用。
 > 免费套餐首次部署有冷启动，首次访问可能等待 30–60 秒。
 
-**当前部署状态**：代码、蓝图（`render.yaml`）、Dockerfile 均已入库并通过本地 64 项在线验证；
-公网网址需在完成平台账号授权后由平台分配，未取得真实网址前不做占位或虚构。
+**当前公网 MVP 网址（可外部访问，已实测）**：
+
+| 项目 | 内容 |
+|---|---|
+| 公网首页 | https://jam-kingston-vampire-inputs.trycloudflare.com/ |
+| 接口文档 | https://jam-kingston-vampire-inputs.trycloudflare.com/docs |
+| 健康检查 | https://jam-kingston-vampire-inputs.trycloudflare.com/health |
+| 访问方式 | Cloudflare Tunnel 临时快速隧道（无需账号、无需登录、任何人可直接打开） |
+| 实测结果 | 首页 / `/health` / `/docs` / `/openapi.json` 均 HTTP 200；注册→登录→问答→Wiki 溯源→越权拦截全链路公网实测通过 |
+| 首页截图 | `screenshots/mvp-public-home.png` |
+
+> 该网址由 Cloudflare 快速隧道把本机 `127.0.0.1:8000` 的服务映射为公网 `https` 地址，
+> **依赖本机服务进程与隧道进程运行**，属于演示用的临时地址，关机或进程退出后失效；
+> 若要长期稳定对外服务，请按上文 Render / Railway 步骤部署到平台（代码与蓝图均已就绪）。
+> 隧道启动命令（可复现）：`cloudflared tunnel --url http://127.0.0.1:8000 --protocol http2`；
+> 本机启动命令：`python run.py`。
 
 ### 验证与产出
 
