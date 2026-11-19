@@ -1,0 +1,25 @@
+# 本地虚拟环境（不进镜像）
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# 密钥与环境变量文件（绝不进镜像，由平台注入）
+.env
+*.env
+!.env.example
+
+# 用户台账（含密码哈希，运行时在云端重新生成）
+data/
+
+# 知识图谱运行时产物（seed_on_startup 会在云端自动重建）
+kg_store/*.json
+
+# 本地临时产物与截图缓存
+screenshots/
+*.log
+.DS_Store
+
+# git 元数据
+.git/
+.gitignore
