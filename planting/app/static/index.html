@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>种植灌溉与农事记录 · 调研智能体</title>
+<style>
+  :root {
+    --border: #e3e6ea; --bg: #f6f7f9; --card: #fff; --text: #1f2329;
+    --muted: #6b7280; --primary: #2563eb; --primary-dark: #1d4fc0;
+    --ok: #16a34a; --warn: #d97706; --danger: #dc2626;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Microsoft YaHei", "PingFang SC", sans-serif; background: var(--bg); color: var(--text); }
+  header { background: var(--card); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  header h1 { font-size: 18px; margin: 0; }
+  header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  .auth-box { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  input, select, textarea { border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; font-size: 14px; background: #fff; }
+  button { border: none; border-radius: 6px; padding: 8px 14px; font-size: 14px; cursor: pointer; background: var(--primary); color: #fff; }
+  button.secondary { background: #eef1f5; color: var(--text); }
+  button:hover { background: var(--primary-dark); }
+  button.secondary:hover { background: #e2e6ec; }
+  nav { display: flex; gap: 4px; padding: 0 24px; background: var(--card); border-bottom: 1px solid var(--border); }
+  nav button { background: transparent; color: var(--muted); border-radius: 0; padding: 12px 16px; }
+  nav button.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+  main { max-width: 1080px; margin: 24px auto; padding: 0 24px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .item { border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
+  .item h4 { margin: 0 0 6px; font-size: 14px; }
+  .item p { margin: 4px 0; font-size: 13px; color: var(--muted); }
+  .tag { display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #eef4ff; color: var(--primary); margin-right: 6px; }
+  .tag.role { background: #f0fdf4; color: var(--ok); }
+  .muted { color: var(--muted); font-size: 13px; }
+  .answer { white-space: pre-wrap; line-height: 1.7; }
+  .source-list { margin-top: 12px; }
+  .score { font-weight: 600; }
+  .score.pass { color: var(--ok); }
+  .score.fail { color: var(--danger); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { border-bottom: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+  .hidden { display: none; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  textarea { width: 100%; min-height: 80px; resize: vertical; }
+  .alert { padding: 10px 12px; border-radius: 8px; font-size: 13px; margin: 8px 0; }
+  .alert.err { background: #fef2f2; color: var(--danger); }
+  .alert.info { background: #eff6ff; color: var(--primary); }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>种植灌溉与农事记录 · 调研智能体 MVP</h1>
+    <div class="sub">证据知识图谱 · RAG 检索 · Harness 合规拦截 · 分层权限</div>
+  </div>
+  <div class="auth-box" id="authBox"></div>
+</header>
+
+<nav>
+  <button data-tab="wiki" class="active">Wiki 知识库</button>
+  <button data-tab="chat">智能问答</button>
+  <button data-tab="admin" id="adminTab" class="hidden">后台管理</button>
+</nav>
+
+<main>
+  <!-- Wiki 页 -->
+  <section id="tab-wiki">
+    <div class="card">
+      <div class="row">
+        <input id="wikiSearch" placeholder="检索事实 / 文档关键词，如：交接、传感器、异常" style="flex:1">
+        <button onclick="loadWikiSearch()">检索</button>
+        <button class="secondary" onclick="loadWiki()">重置</button>
+      </div>
+      <div class="muted" style="margin-top:8px">访客可浏览全部公开知识；问答与生成任务需登录。</div>
+    </div>
+    <div class="card">
+      <h3>访谈角色</h3>
+      <div class="grid" id="roleList"></div>
+    </div>
+    <div class="card">
+      <h3>业务机会 O1–O4</h3>
+      <div class="grid" id="oppList"></div>
+    </div>
+    <div class="card">
+      <h3>指标基线</h3>
+      <div class="grid" id="metricList"></div>
+    </div>
+    <div class="card" id="searchCard" style="display:none">
+      <h3>检索结果</h3>
+      <div class="grid" id="searchList"></div>
+    </div>
+  </section>
+
+  <!-- 问答页 -->
+  <section id="tab-chat" class="hidden">
+    <div class="card">
+      <div id="chatNotice" class="alert info">登录后可发起问答；回答仅依据已归档访谈证据，并经 Harness 合规校验。</div>
+      <textarea id="question" placeholder="例如：异常读数为什么必须人工核验？交接要包含哪些要素？"></textarea>
+      <div class="row" style="margin-top:10px">
+        <button onclick="ask()">提问</button>
+        <button class="secondary" onclick="document.getElementById('question').value=''">清空</button>
+      </div>
+    </div>
+    <div class="card" id="answerCard" style="display:none">
+      <div class="row" style="justify-content:space-between">
+        <strong>回答</strong>
+        <span id="harnessScore" class="score"></span>
+      </div>
+      <div class="answer" id="answerText" style="margin-top:10px"></div>
+      <div class="source-list">
+        <div class="muted">来源证据</div>
+        <div id="sourceList"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 后台页 -->
+  <section id="tab-admin" class="hidden">
+    <div class="card">
+      <h3>用户管理</h3>
+      <table>
+        <thead><tr><th>用户名</th><th>显示名</th><th>角色</th><th>操作</th></tr></thead>
+        <tbody id="userTable"></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>审计日志</h3>
+      <table>
+        <thead><tr><th>时间</th><th>用户</th><th>动作</th><th>说明</th></tr></thead>
+        <tbody id="auditTable"></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<script>
+const state = { token: localStorage.getItem('token') || '', user: JSON.parse(localStorage.getItem('user') || 'null') };
+
+async function api(path, options = {}) {
+  const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+  if (state.token) headers['Authorization'] = 'Bearer ' + state.token;
+  const resp = await fetch(path, { ...options, headers });
+  const body = await resp.json();
+  if (!body.ok) throw new Error(body.error?.msg || '请求失败');
+  return body.data;
+}
+
+function renderAuth() {
+  const box = document.getElementById('authBox');
+  const adminTab = document.getElementById('adminTab');
+  if (state.user) {
+    adminTab.classList.toggle('hidden', state.user.role !== 'admin');
+    box.innerHTML = `<span class="muted">${state.user.display_name}（${state.user.role}）</span>
+      <button class="secondary" onclick="logout()">退出</button>`;
+  } else {
+    adminTab.classList.add('hidden');
+    box.innerHTML = `
+      <input id="loginUser" placeholder="用户名" style="width:110px">
+      <input id="loginPass" type="password" placeholder="密码" style="width:110px">
+      <button onclick="login()">登录</button>
+      <button class="secondary" onclick="showRegister()">注册</button>`;
+  }
+}
+
+function login() {
+  const username = document.getElementById('loginUser').value.trim();
+  const password = document.getElementById('loginPass').value;
+  api('/api/auth/login', { method: 'POST', body: JSON.stringify({ username, password }) })
+    .then(data => {
+      state.token = data.token; state.user = data.user;
+      localStorage.setItem('token', state.token); localStorage.setItem('user', JSON.stringify(state.user));
+      renderAuth(); switchTab('wiki');
+    })
+    .catch(e => alert(e.message));
+}
+
+function showRegister() {
+  const username = prompt('设置用户名（字母开头，3–20 位）'); if (!username) return;
+  const password = prompt('设置密码（至少 6 位）'); if (!password) return;
+  const displayName = prompt('显示名（可选）') || '';
+  api('/api/auth/register', { method: 'POST', body: JSON.stringify({ username, password, display_name: displayName }) })
+    .then(() => alert('注册成功，请登录'))
+    .catch(e => alert(e.message));
+}
+
+function logout() {
+  state.token = ''; state.user = null;
+  localStorage.removeItem('token'); localStorage.removeItem('user');
+  renderAuth();
+}
+
+document.querySelectorAll('nav button').forEach(btn => {
+  btn.onclick = () => switchTab(btn.dataset.tab);
+});
+
+function switchTab(tab) {
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+  ['wiki', 'chat', 'admin'].forEach(t => document.getElementById('tab-' + t).classList.toggle('hidden', t !== tab));
+  if (tab === 'wiki') loadWiki();
+  if (tab === 'admin') loadAdmin();
+}
+
+async function loadWiki() {
+  const [roles, opps, metrics] = await Promise.all([
+    api('/api/kg/roles'), api('/api/kg/opportunities'), api('/api/kg/metrics'),
+  ]);
+  document.getElementById('roleList').innerHTML = roles.map(r => `
+    <div class="item">
+      <h4><span class="tag role">${r.post}</span>${r.name}</h4>
+      <p>关注点：${r.focus}</p><p>权限：${r.authority}</p><p>否决权：${r.veto}</p>
+    </div>`).join('');
+  document.getElementById('oppList').innerHTML = opps.map(o => `
+    <div class="item">
+      <h4>${o.opportunity_id} ${o.name}</h4>
+      <p>触发：${o.trigger}</p><p>结果：${o.result}</p>
+      <p>依据：${(o.refs || []).join('、')}</p>
+    </div>`).join('');
+  document.getElementById('metricList').innerHTML = metrics.map(m => `
+    <div class="item">
+      <h4>${m.metric_id} ${m.name}</h4>
+      <p>现状：${m.current}</p><p>责任人：${m.owner}</p><p>状态：${m.status}</p>
+    </div>`).join('');
+}
+
+async function loadWikiSearch() {
+  const q = document.getElementById('wikiSearch').value.trim();
+  if (!q) return;
+  const data = await api('/api/rag/search?q=' + encodeURIComponent(q));
+  document.getElementById('searchCard').style.display = '';
+  document.getElementById('searchList').innerHTML = data.chunks.map(c => `
+    <div class="item">
+      <h4>${c.evidence_id ? c.evidence_id + ' · ' + c.role : c.source}</h4>
+      <p>${c.text}</p>
+    </div>`).join('') || '<div class="muted">未检索到相关内容</div>';
+}
+
+async function ask() {
+  if (!state.user) { alert('请先登录后再提问'); return; }
+  const question = document.getElementById('question').value.trim();
+  if (!question) return;
+  try {
+    const data = await api('/api/chat', { method: 'POST', body: JSON.stringify({ question }) });
+    document.getElementById('answerCard').style.display = '';
+    document.getElementById('answerText').textContent = data.answer;
+    const score = document.getElementById('harnessScore');
+    score.textContent = `Harness ${data.harness.score} 分 · ${data.harness.passed ? '通过' : '未通过'} · 来源 ${data.source}`;
+    score.className = 'score ' + (data.harness.passed ? 'pass' : 'fail');
+    document.getElementById('sourceList').innerHTML = data.sources.map(s => `
+      <div class="item" style="margin-top:8px">
+        <h4>${s.evidence_id ? s.evidence_id + ' · ' + s.role : '文档 · ' + s.source}</h4>
+        <p>${s.text}</p>
+      </div>`).join('');
+  } catch (e) { alert(e.message); }
+}
+
+async function loadAdmin() {
+  const [users, audit] = await Promise.all([api('/api/admin/users'), api('/api/admin/audit')]);
+  document.getElementById('userTable').innerHTML = users.users.map(u => `
+    <tr>
+      <td>${u.username}</td><td>${u.display_name}</td><td>${u.role}</td>
+      <td><button class="secondary" onclick="toggleRole('${u.username}', '${u.role}')">切换为${u.role === 'admin' ? 'user' : 'admin'}</button></td>
+    </tr>`).join('');
+  document.getElementById('auditTable').innerHTML = audit.records.map(r => `
+    <tr><td>${new Date(r.time * 1000).toLocaleString()}</td><td>${r.username}</td><td>${r.action}</td><td>${r.detail}</td></tr>`).join('');
+}
+
+async function toggleRole(username, role) {
+  const next = role === 'admin' ? 'user' : 'admin';
+  try { await api(`/api/admin/users/${username}/role`, { method: 'POST', body: JSON.stringify({ role: next }) }); loadAdmin(); }
+  catch (e) { alert(e.message); }
+}
+
+renderAuth();
+loadWiki().catch(e => document.getElementById('roleList').innerHTML = '<div class="alert err">' + e.message + '</div>');
+</script>
+</body>
+</html>

@@ -96,3 +96,30 @@ docs:
   tech_solution_md: "./docs/06-技术方案.md"
   tech_solution_docx: "./docs/06-技术方案.docx"
   prompt_md: "./docs/07-智能体提示词.md"
+
+# ---------- 鉴权与分层权限 ----------
+# 角色三级：admin（管理员/SaaS）、user（注册用户）、guest（访客，不入库）
+auth:
+  jwt_secret: ""                # 留空时读取环境变量 JWT_SECRET；生产部署必须通过环境变量设置
+  token_expire_hours: 12        # 登录令牌有效期（小时）
+  admin_username: ""            # 首次启动初始化管理员账号，留空读环境变量 ADMIN_USERNAME
+  admin_password: ""            # 首次启动初始化管理员密码，留空读环境变量 ADMIN_PASSWORD；仅入库一次
+  allow_register: true          # 是否开放访客自助注册为普通用户
+  users_path: "./data/users.json"   # 用户台账持久化路径（JSON，不提交真实密码哈希以外的敏感信息）
+
+# ---------- 兼容 OpenAI 协议的远程模型（云端部署用） ----------
+# 优先级：Ollama 本地模型 → 远程兼容接口 → 模板引擎降级；任一通道不可用自动顺延
+remote_llm:
+  enabled: false                            # 是否启用远程兼容接口
+  base_url: ""                              # 如 https://api.deepseek.com/v1，留空读环境变量 REMOTE_LLM_BASE_URL
+  api_key: ""                               # 留空读环境变量 OPENAI_API_KEY，禁止把真实密钥写进本文件
+  model_name: ""                            # 留空读环境变量 REMOTE_LLM_MODEL
+  timeout: 60                               # 单次生成超时（秒）
+  temperature: 0.2                          # 低温度，减少事实漂移
+  max_tokens: 2048                          # 单次最大生成 token
+
+# ---------- RAG 检索 ----------
+rag:
+  top_k: 5                    # 单次问答注入的证据块上限
+  doc_chunk_chars: 300        # 文档切块的目标字符长度
+  docs_dir: "./docs"          # 参与检索的调研文档目录（仅读取 md）

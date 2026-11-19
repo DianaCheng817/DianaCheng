@@ -14,6 +14,13 @@ __pycache__/
 # 知识图谱持久化文件：由 app/kg/seed.py 自动生成，属于派生数据
 kg_store/*.json
 
+# 用户台账与审计日志：运行时生成，含密码哈希，不入库
+data/
+
+# 环境变量文件（禁止提交真实密钥）
+.env
+.env.local
+
 # 运行与验证的临时输出
 verify_out.txt
 verify_online.txt

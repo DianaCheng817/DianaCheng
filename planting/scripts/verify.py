@@ -29,6 +29,9 @@ from app.harness.checker import run_checks            # noqa: E402  Harness 入�
 from app.kg.graph import kg                            # noqa: E402  知识图谱单例
 from app.llm.ollama_client import ollama               # noqa: E402  模型状态
 from app.services.stage import stage_service           # noqa: E402  关卡生成服务
+from app.rag.retriever import retriever                # noqa: E402  RAG 检索器
+from app.services.chat import chat_service             # noqa: E402  问答服务
+from app.auth import security as auth_security         # noqa: E402  密码哈希与令牌
 
 
 class Checker:
@@ -170,6 +173,48 @@ def check_generation(c: Checker) -> None:
         c.expect(len(result["content"]) > 800, f"{task['key']} 正文非空", f"长度 {len(result['content'])}")   # 防止空模板
 
 
+def check_rag_auth(c: Checker) -> None:
+    """验证 RAG 检索、鉴权基础能力与问答模板链路。
+
+    入参：c 断言收集器。
+    出参：无。
+    失败行为：不抛异常，异常由断言记录。
+    """
+    print("\n[5] RAG 检索 / 鉴权 / 问答模板")   # 分组标题
+
+    # RAG 索引：事实块 36 条，另含文档切块
+    retriever.build()
+    stats = retriever.stats()
+    c.expect(stats["facts"] == 36, "RAG 事实块为 36", f"实际 {stats['facts']}")
+    c.expect(stats["docs"] >= 1, "RAG 含文档切块", f"实际 {stats['docs']}")
+
+    hits = retriever.retrieve("交接五要素")
+    c.expect(len(hits) >= 1, "检索到交接相关证据块", f"实际 {len(hits)} 块")
+    c.expect(all("text" in h and "kind" in h for h in hits), "检索块含来源与正文字段")
+
+    # 密码哈希：明文一致可校验，错误密码不通过
+    stored = auth_security.hash_password("secret123")
+    c.expect(auth_security.verify_password("secret123", stored), "密码哈希校验通过")
+    c.expect(not auth_security.verify_password("wrong-pass", stored), "错误密码被拒绝")
+
+    # 令牌：签发后可回解角色，篡改签名被拒绝
+    token = auth_security.issue_token("tester", "user")
+    payload = auth_security.decode_token(token)
+    c.expect(payload["sub"] == "tester" and payload["role"] == "user", "令牌回解用户名与角色")
+    tampered = token[:-2] + ("aa" if not token.endswith("aa") else "bb")
+    try:
+        auth_security.decode_token(tampered)
+        c.expect(False, "篡改签名令牌应被拒绝")
+    except Exception:
+        c.expect(True, "篡改签名令牌被拒绝")
+
+    # 问答模板链路：强制模板，回答必须通过 Harness 且带来源
+    result = chat_service.answer("异常读数为什么必须人工核验？", force_template=True)
+    c.expect(result["harness"]["passed"], "问答模板回答通过 Harness", str(result["harness"]["suggestions"]))
+    c.expect(len(result["answer"]) > 100, "问答模板正文非空", f"长度 {len(result['answer'])}")
+    c.expect("sources" in result and "source" in result, "问答返回来源与通道字段")
+
+
 def check_online(c: Checker) -> None:
     """验证 HTTP 接口（需服务已启动）。
 
@@ -177,7 +222,7 @@ def check_online(c: Checker) -> None:
     出参：无。
     失败行为：连接失败时记录为失败项，不抛异常。
     """
-    print("\n[5] HTTP 接口（在线模式）")   # 分组标题
+    print("\n[6] HTTP 接口（在线模式）")   # 分组标题
     import requests   # 延迟导入，离线模式不需要该依赖
 
     base = f"http://{config.service.host}:{config.service.port}"   # 用配置拼地址，不硬编码
@@ -190,13 +235,50 @@ def check_online(c: Checker) -> None:
         c.expect(resp2.get("ok") is True, "/api/kg/search 返回 ok")                              # 统一结构
         c.expect(resp2["data"]["count"] >= 1, "检索到交接相关事实")                                # 有命中
 
-        resp3 = requests.post(                                       # 生成接口
+        # 未登录访问受保护接口应被拦截（权限分层生效）
+        resp_anon = requests.post(
             f"{base}/api/generate",
-            json={"task_key": "opportunity:1", "force_template": True},   # 强制模板，避免依赖模型
+            json={"task_key": "opportunity:1", "force_template": True},
+            timeout=10,
+        ).json()
+        c.expect(resp_anon.get("ok") is False, "未登录访问生成接口被拦截")
+
+        resp_anon_chat = requests.post(
+            f"{base}/api/chat",
+            json={"question": "测试"},
+            timeout=10,
+        ).json()
+        c.expect(resp_anon_chat.get("ok") is False, "未登录访问问答接口被拦截")
+
+        # 管理员登录（演示默认账号；线上由环境变量注入）
+        admin_name = config.auth.admin_username or "admin"
+        admin_pwd = config.auth.admin_password or "admin123"
+        login = requests.post(
+            f"{base}/api/auth/login",
+            json={"username": admin_name, "password": admin_pwd},
+            timeout=10,
+        ).json()
+        c.expect(login.get("ok") is True, "管理员登录成功", login.get("error", {}).get("msg", ""))
+        token = login["data"]["token"] if login.get("ok") else ""
+        headers = {"Authorization": f"Bearer {token}"}
+
+        resp3 = requests.post(                                       # 生成接口（带登录态）
+            f"{base}/api/generate",
+            json={"task_key": "opportunity:1", "force_template": True},
+            headers=headers,
             timeout=30,
         ).json()
         c.expect(resp3.get("ok") is True, "/api/generate 返回 ok")                  # 统一结构
         c.expect(resp3["data"]["harness"]["score"] == 100, "/api/generate 合规满分")   # 返回内容合规
+
+        resp_chat = requests.post(                                   # 问答接口（带登录态）
+            f"{base}/api/chat",
+            json={"question": "异常读数为什么必须人工核验？", "force_template": True},
+            headers=headers,
+            timeout=30,
+        ).json()
+        c.expect(resp_chat.get("ok") is True, "/api/chat 返回 ok")
+        c.expect(resp_chat["data"]["harness"]["passed"], "问答回答通过 Harness")
 
         resp4 = requests.post(                                       # 校验接口
             f"{base}/api/harness/check",
@@ -229,8 +311,9 @@ def main() -> int:
     check_kg(c)          # 第 2 组
     check_harness(c)     # 第 3 组
     check_generation(c)  # 第 4 组
+    check_rag_auth(c)    # 第 5 组
     if args.online:      # 仅在 --online 时执行
-        check_online(c)  # 第 5 组
+        check_online(c)  # 第 6 组
 
     print("\n" + "=" * 60)                              # 汇总分隔线
     print(f"通过 {c.passed} 项 / 失败 {c.failed} 项")     # 总数

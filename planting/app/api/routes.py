@@ -8,14 +8,16 @@
 
 from __future__ import annotations   # 类型注解延迟求值
 
-from fastapi import APIRouter, Query   # 路由容器与查询参数校验
+from fastapi import APIRouter, Depends, Query   # 路由容器、依赖注入与查询参数校验
 from pydantic import BaseModel, Field  # 请求体模型与字段说明
 
+from app.auth.deps import require_role          # 角色校验依赖
+from app.auth.store import ADMIN, USER          # 角色常量
 from app.core.config import config              # 健康检查要回显服务名与版本
 from app.core.response import ok                # 成功响应统一构造
 from app.harness.checker import run_checks      # 文本合规校验入口
 from app.kg.graph import kg                     # 知识图谱单例
-from app.llm.ollama_client import ollama        # 模型状态查询
+from app.llm.provider import provider           # 统一模型门面状态
 from app.services.stage import stage_service    # 关卡生成服务
 
 router = APIRouter()   # 路由容器，最终在 app/main.py 挂载
@@ -63,7 +65,7 @@ async def health() -> dict:
         "service": config.app.name,              # 服务名，便于确认起的是哪个服务
         "version": config.app.version,           # 版本号
         "knowledgeGraph": kg.stats(),            # 图谱规模，空库能立刻看出来
-        "llm": ollama.describe(),                # 模型接入状态，含在线与否
+        "llm": provider.describe(),              # 模型接入状态（多通道），含在线与否
     })
 
 
@@ -164,10 +166,10 @@ async def kg_metrics() -> dict:
 
 
 @router.post("/api/kg/facts")
-async def kg_add_fact(payload: NewFactRequest) -> dict:
-    """人工确认后新增一条事实。
+async def kg_add_fact(payload: NewFactRequest, _: dict = Depends(require_role(ADMIN))) -> dict:
+    """人工确认后新增一条事实（仅管理员）。
 
-    入参：NewFactRequest，confirmed 必须为 true。
+    入参：NewFactRequest，confirmed 必须为 true；_ 为注入的管理员身份。
     出参：统一结构，data 为写入后的事实。
     失败行为：未确认、编号非法或重复、角色非法均转 fail 响应。
     """
@@ -196,10 +198,10 @@ async def list_tasks() -> dict:
 
 
 @router.post("/api/generate")
-async def generate(payload: GenerateRequest) -> dict:
-    """生成指定关卡答卷。
+async def generate(payload: GenerateRequest, _: dict = Depends(require_role(ADMIN, USER))) -> dict:
+    """生成指定关卡答卷（登录用户可用）。
 
-    入参：GenerateRequest。
+    入参：GenerateRequest；_ 为注入的登录用户身份。
     出参：统一结构，data 含正文、来源与 Harness 报告。
     失败行为：任务不存在转 fail 响应；模型失败自动降级，不抛异常。
     """

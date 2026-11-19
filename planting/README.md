@@ -128,12 +128,46 @@ python src\tools\check_docs.py
 
 ---
 
-## 智能体服务（FastAPI + 知识图谱 + 本地 Ollama）
+## 智能体服务（FastAPI + RAG + 知识图谱 + Harness + 分层权限）
 
-资料包之外，本仓库同时提供一个**可运行的调研智能体**：把 36 条访谈事实建成知识图谱，
-让本地模型只能基于图谱证据写作，再用 Harness 在返回前拦截编造。
+资料包之外，本仓库提供一个**可运行、可公网访问的调研智能体 MVP**：把 36 条访谈事实与调研文档建成可检索知识库，
+模型只能基于召回证据作答，返回前统一过 Harness 合规拦截；按管理员 / 注册用户 / 访客分层授权。
 
-### 启动
+### MVP 构成
+
+| 构成 | 实现 |
+| --- | --- |
+| ① FastAPI | `app/main.py` + `app/api/`，统一 `ok/data/error` 返回结构，`/docs` 可在线试调 |
+| ② Harness | `app/harness/`，H2–H8 八条规则加权评分，未通过即阻断并回退证据模板 |
+| ③ 知识库：RAG + LLM + Wiki | `app/rag/` 文档切块与召回；`app/llm/` 本地 Ollama / 远程兼容接口 / 模板降级三通道；`app/kg/` 知识图谱提供 Wiki 视角（角色、事实、机会、指标、流程） |
+| ④ 分层权限 | `app/auth/`，管理员 admin（SaaS：用户管理、图谱维护、审计）、注册用户 user（问答与生成）、访客 guest（只读浏览 Wiki） |
+| ⑤ 在线网址 | 容器化部署，托管平台注入 `PORT` 即可对外访问；见下文「部署上线」 |
+
+### 目录结构（服务侧）
+
+```
+planting/
+├── app/
+│   ├── main.py               # FastAPI 入口，lifespan 加载图谱 / RAG 索引 / 初始化管理员
+│   ├── api/
+│   │   ├── routes.py         # 知识图谱、关卡生成、Harness 校验路由
+│   │   ├── auth_routes.py    # 注册、登录、用户管理、角色调整、审计日志
+│   │   └── chat_routes.py    # RAG 检索预览与问答接口
+│   ├── core/                 # 配置、统一返回结构、异常、日志
+│   ├── kg/                   # 知识图谱（networkx + JSON 持久化）
+│   ├── rag/                  # 文档切块、词元打分检索（轻量本地方案）
+│   ├── llm/                  # Ollama 客户端 + 统一模型门面（兼容 OpenAI 协议）
+│   ├── harness/              # 合规规则与加权评分
+│   ├── services/             # 提示词编排、关卡生成、RAG 问答服务
+│   ├── auth/                 # 密码哈希、JWT 令牌、用户台账、鉴权依赖
+│   └── static/index.html     # 前端单页（Wiki 浏览 / 问答 / 后台管理）
+├── config.yaml               # 唯一配置源（模型地址、路径、规则词表、权限、RAG）
+├── Dockerfile                # 容器化部署文件
+├── .env.example              # 环境变量样例（密钥不入库）
+└── scripts/verify.py         # 阶段验证脚本（离线 + --online 在线两组断言）
+```
+
+### 本地启动
 
 ```powershell
 python -m venv .venv
@@ -142,38 +176,78 @@ pip install -r requirements.txt
 python run.py
 ```
 
+- 前端页面：<http://127.0.0.1:8000/>
 - 接口文档：<http://127.0.0.1:8000/docs>
 - 健康检查：<http://127.0.0.1:8000/health>
-- 模型名：`config.yaml` 的 `ollama.model_name`，**必须与 `ollama list` 完全一致**；
-  不一致时探活判定不可用，自动降级为模板引擎，不会报错中断
+- 模型名须与 `ollama list` 完全一致；本地无 Ollama 时自动降级模板引擎，服务不中断。
+
+### 账号与权限矩阵
+
+| 角色 | 能力 |
+| --- | --- |
+| 访客 guest | 浏览 Wiki（角色 / 事实 / 机会 / 指标）、检索预览、查看接口文档；不可问答与生成 |
+| 注册用户 user | 访客全部能力 + 发起 RAG 问答、生成关卡答卷 |
+| 管理员 admin | 用户全部能力 + 新增事实、用户管理、角色调整、查看审计日志 |
+
+- 首次启动自动初始化管理员：账号取环境变量 `ADMIN_USERNAME`（缺省 `admin`），密码取 `ADMIN_PASSWORD`；
+  未配置时使用演示密码 `admin123`，**上线前必须通过环境变量替换**。
+- 自助注册受 `config.yaml` 的 `auth.allow_register` 开关控制；注册用户默认为 `user` 角色。
+
+### 主要接口
+
+| 方法 | 路径 | 权限 | 说明 |
+| --- | --- | --- | --- |
+| GET | `/health` | 公开 | 服务状态、图谱规模、模型通道 |
+| GET | `/api/kg/roles` `/api/kg/facts/{id}` `/api/kg/opportunities` `/api/kg/metrics` | 公开 | Wiki 知识查询 |
+| GET | `/api/kg/search` `/api/rag/search` | 公开 | 事实 / 文档块检索 |
+| POST | `/api/auth/register` `/api/auth/login` | 公开 | 注册 / 登录，返回令牌 |
+| GET | `/api/auth/me` | 登录 | 当前用户信息 |
+| POST | `/api/chat` | user / admin | RAG 问答（检索 → 生成 → Harness → 兜底） |
+| POST | `/api/generate` | user / admin | 生成指定关卡答卷 |
+| POST | `/api/harness/check` | 公开 | 文本合规校验 |
+| POST | `/api/kg/facts` | admin | 人工确认后新增事实 |
+| GET | `/api/admin/users` `/api/admin/audit` | admin | 用户清单 / 审计日志 |
+| POST | `/api/admin/users/{username}/role` | admin | 调整用户角色 |
+
+### 配置与环境变量
+
+所有密钥、模型地址只允许出现在 `config.yaml` 或环境变量，禁止硬编码进代码。敏感项优先取环境变量：
+
+| 环境变量 | 作用 |
+| --- | --- |
+| `JWT_SECRET` | 登录令牌签名密钥，生产必须设置随机长字符串 |
+| `ADMIN_USERNAME` / `ADMIN_PASSWORD` | 初始管理员账号密码（仅首次写入台账） |
+| `REMOTE_LLM_ENABLED` / `REMOTE_LLM_BASE_URL` / `OPENAI_API_KEY` / `REMOTE_LLM_MODEL` | 云端远程兼容模型通道 |
+| `OLLAMA_ENABLED` / `OLLAMA_BASE_URL` / `OLLAMA_MODEL` | 本地 Ollama 通道覆盖 |
+
+样例见 `.env.example`。
+
+### 部署上线
+
+容器方式：
+
+```bash
+docker build -t planting-agent .
+docker run -p 8000:8000 --env-file .env planting-agent
+```
+
+托管平台（Render / Railway 等）：
+1. 推送本仓库后新建服务，构建命令 `pip install -r requirements.txt`，启动命令 `uvicorn app.main:app --host 0.0.0.0 --port ${PORT}`；
+2. 在平台环境变量中配置 `JWT_SECRET`、`ADMIN_USERNAME`、`ADMIN_PASSWORD`，按需配置远程模型；
+3. 平台分配的公网地址即 MVP 可访问网址；本地无 Ollama 时问答自动走证据模板，不影响服务可用性。
 
 ### 验证与产出
 
 ```powershell
-python scripts\verify.py            # 离线验证：48 项断言
-python scripts\verify.py --online   # 在线验证：额外覆盖 7 个 HTTP 用例
+python scripts\verify.py            # 离线验证：配置 / 图谱 / Harness / 关卡 / RAG / 鉴权 / 问答模板
+python scripts\verify.py --online   # 在线验证：额外覆盖 HTTP 接口、权限拦截、登录与问答
 python scripts\build_docx.py        # 技术方案 md -> docx
 python src\tools\check_docs.py      # 原有文档自检（证据编号、图片、SVG）
 ```
 
-### 服务目录
-
-| 路径 | 说明 |
-| --- | --- |
-| `app/main.py` | FastAPI 入口，lifespan 内加载知识图谱 |
-| `app/core/` | 配置、统一返回结构、异常、日志 |
-| `app/kg/` | 知识图谱（`seed.py` 为 36 条事实的落库来源） |
-| `app/llm/` | Ollama 客户端，探活 + 生成 + 降级 |
-| `app/harness/` | H1–H8 八条合规规则与加权评分 |
-| `app/services/` | 提示词三层编排与六关卡生成 |
-| `config.yaml` | 唯一配置源（模型地址、路径、规则词表） |
-| `scripts/verify.py` | 阶段验证脚本 |
-| `docs/06-技术方案.md` / `.docx` | 技术方案（同源生成，内容一致） |
-| `docs/07-智能体提示词.md` | 完整提示词集，可直接手工复制使用 |
-
 ### 设计取舍一句话
 
-不做「更聪明的模型」，做「不会编造的流程」：模型输出先过 Harness，
+不做「更聪明的模型」，做「不会编造的流程」：检索只召回已归档证据，模型输出先过 Harness，
 未通过即丢弃并改走证据模板，因此不合规内容永远不会到达调用方。
 
 ---
