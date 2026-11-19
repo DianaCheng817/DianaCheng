@@ -1,0 +1,25 @@
+# ============================================================
+# Render 部署蓝图（Blueprint）
+# 控制台 New → Blueprint → 选择本仓库后，Render 按此文件创建 Web 服务
+# 敏感变量（ADMIN_PASSWORD 等）在控制台 Environment 中填写，不写入本文件
+# ============================================================
+services:
+  - type: web
+    name: planting-agent
+    runtime: python
+    rootDir: planting
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port ${PORT}
+    envVars:
+      # 平台自动生成随机签名密钥
+      - key: JWT_SECRET
+        generateValue: true
+      # 初始管理员账号：用户名在控制台填写，密码留空由控制台设置
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      # 云端不启用本地 Ollama；不配置远程模型时问答自动走证据模板
+      - key: REMOTE_LLM_ENABLED
+        value: "false"
