@@ -23,4 +23,5 @@ COPY . .
 EXPOSE 8000
 
 # 启动 ASGI 服务；端口由平台注入的 PORT 环境变量决定
-CMD uvicorn app.main:app --host 0.0.0.0 --port ${PORT}
+# 必须用 shell 形式包裹，确保 ${PORT} 在运行时展开为整数（exec 形式不会展开变量）
+CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT}"]
